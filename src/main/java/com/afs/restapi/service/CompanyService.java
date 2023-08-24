@@ -29,8 +29,8 @@ public class CompanyService {
         this.employeeJpaRepository = employeeJpaRepository;
     }
 
-    public InMemoryEmployeeRepository getEmployeeRepository() {
-        return inMemoryEmployeeRepository;
+    public EmployeeJpaRepository getEmployeeRepository() {
+        return employeeJpaRepository;
     }
 
     public List<Company> findAll() {
@@ -57,7 +57,7 @@ public class CompanyService {
     }
 
     public List<Employee> findEmployeesByCompanyId(Long id) {
-        return getEmployeeRepository().findByCompanyId(id);
+        return getEmployeeRepository().findEmployeesByCompanyId(id);
     }
 
     public void delete(Long id) {
