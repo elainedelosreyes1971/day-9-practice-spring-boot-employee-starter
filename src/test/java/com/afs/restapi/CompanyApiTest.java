@@ -145,12 +145,10 @@ class CompanyApiTest {
 
     @Test
     void should_find_employees_by_companies() throws Exception {
-        Company company = getCompany1();
-        companyJpaRepository.save(company);
-        Employee employee = getEmployee(company);
-        employeeJpaRepository.save(employee);
+        Company company = companyJpaRepository.save(getCompany1());
+        Employee employee = employeeJpaRepository.save(getEmployee(company));
 
-        mockMvc.perform(get("/companies/{companyId}/employees", 1L))
+        mockMvc.perform(get("/companies/{companyId}/employees", company.getId()))
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(employee.getId()))
