@@ -67,7 +67,7 @@ class CompanyApiTest {
         assertTrue(optionalCompany.isPresent());
         Company updatedCompany = optionalCompany.get();
         Assertions.assertEquals(savedCompany.getId(), updatedCompany.getId());
-        Assertions.assertEquals(savedCompany.getName(), updatedCompany.getName());
+        Assertions.assertEquals(companyUpdateRequest.getName(), updatedCompany.getName());
     }
 
     @Test
