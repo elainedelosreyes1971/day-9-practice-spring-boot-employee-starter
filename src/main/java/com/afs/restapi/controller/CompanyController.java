@@ -10,6 +10,7 @@ import java.util.List;
 
 @RequestMapping("companies")
 @RestController
+@SuppressWarnings("all")
 public class CompanyController {
 
     private final CompanyService companyService;

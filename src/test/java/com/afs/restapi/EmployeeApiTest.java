@@ -37,7 +37,7 @@ class EmployeeApiTest {
 
     @Test
     void should_update_employee_age_and_salary() throws Exception {
-        Employee previousEmployee = new Employee(1L, "zhangsan", 22, "Male", 1000);
+        Employee previousEmployee = new Employee(null, "zhangsan", 22, "Male", 1000);
         Employee savedEmployee = employeeJpaRepository.save(previousEmployee);
 
         Employee employeeUpdateRequest = new Employee(1L, "lisi", 24, "Female", 2000);
@@ -51,9 +51,9 @@ class EmployeeApiTest {
         Optional<Employee> optionalEmployee = employeeJpaRepository.findById(savedEmployee.getId());
         assertTrue(optionalEmployee.isPresent());
         Employee updatedEmployee = optionalEmployee.get();
-        Assertions.assertEquals(savedEmployee.getAge(), updatedEmployee.getAge());
-        Assertions.assertEquals(savedEmployee.getSalary(), updatedEmployee.getSalary());
-        Assertions.assertEquals(savedEmployee.getId(), updatedEmployee.getId());
+        Assertions.assertEquals(employeeUpdateRequest.getAge(), updatedEmployee.getAge());
+        Assertions.assertEquals(employeeUpdateRequest.getSalary(), updatedEmployee.getSalary());
+        Assertions.assertEquals(previousEmployee.getId(), updatedEmployee.getId());
         Assertions.assertEquals(previousEmployee.getName(), updatedEmployee.getName());
         Assertions.assertEquals(previousEmployee.getGender(), updatedEmployee.getGender());
     }
